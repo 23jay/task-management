@@ -1,0 +1,46 @@
+@import '../../../../../assets/scss/variables';
+
+ul.navItem {
+    list-style-type: none;
+    padding: 0em 1em;
+
+    .router-elements {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: $fourteen-px;
+        margin: 1.2em 0em;
+
+        .navImg {
+            margin-right: 1.3em;
+        }
+
+        &:hover {
+            border-radius: 50px;
+            border: 0px #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+.active-route {
+    border-radius: 50px;
+    border: 0px #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logo-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+}
+
+.disable-margin {
+    margin: unset;
+    color: $white;
+    margin-bottom: 1.5em;
+}

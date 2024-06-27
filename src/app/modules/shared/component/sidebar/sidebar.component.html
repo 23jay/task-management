@@ -1,0 +1,12 @@
+<div class="logo-align">
+    <img src="../../../assets/images/icons8-checklist.gif" alt="white-logo" width="30"/>
+</div>
+<hr class="disable-margin">
+<ul class="navItem">
+    <li *ngFor="let item of navigationItems">
+        <a [routerLink]="item.navLink" class="router-elements" [ngClass]="router.url==item.navLink?'active-route':''">
+            <img [src]="item.navIcon" alt="{{ item.navText }}" class="navImg"/>
+            {{ item.navText }}
+          </a>
+    </li>
+</ul>

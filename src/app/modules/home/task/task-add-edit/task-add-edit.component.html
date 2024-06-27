@@ -1,0 +1,46 @@
+<div class="d-flex custom-spc align-items-center">
+  <a href="/tasks/list">Task list</a> <span class="left-arrow">&lt;</span>
+  <p *ngIf="!editId">Add Task</p>
+  <p *ngIf="editId">Update Task</p>
+
+</div>
+<div class="mt-3">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="row gy-3 overflow-hidden ">
+      <div class="col-12">
+        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+        <div class="form-group">
+          <input type="text" class="form-control" name="title" id="title" formControlName="title" required>
+          <app-validation-message [control]="taskForm.get('title')"></app-validation-message>
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+        <div class="form-group">
+          <textarea class="form-control" id="description" formControlName="description" required></textarea>
+          <app-validation-message [control]="taskForm.get('description')"></app-validation-message>
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+        <div class="input-group">
+          <select id="status" class="form-control" formControlName="status">
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-grid">
+          <button class="btn bsb-btn-2xl btn-primary" type="submit" type="submit" *ngIf="!editId"
+            [disabled]="taskForm.invalid">Add
+            Task</button>
+          <button class="btn bsb-btn-2xl btn-primary" type="submit" type="submit" *ngIf="editId"
+            [disabled]="taskForm.invalid">Update
+            Task</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="header-element">
+    <div class="row alignment-row">
+        <div class="col-1">
+
+            <button type="button" mat-button class="top-nav-buttons">
+                <img src="assets/icons/hamburger.svg" alt="Menu icon" />
+            </button>
+        </div>
+        <div class="col-11 d-flex align-items-center justify-content-end">
+            <div class="d-flex align-items-center justify-content-center" [matMenuTriggerFor]="appMenu">
+                <img src="assets/images/40px.png" class="user-image" alt="User profile" />
+                <p class="user-name">{{userName}}</p>
+                <img src="assets/icons/chevron-down.svg" alt="down arrow" />
+            </div>
+            <mat-menu #appMenu="matMenu" class="manage-menu">
+                <button mat-menu-item (click)="signOut()">
+                    <div class="d-flex align-items-center">
+                        <img src="assets/icons/logout.svg" alt="logout" class="me-2" />
+                        <span>Logout</span>
+                    </div>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</div>

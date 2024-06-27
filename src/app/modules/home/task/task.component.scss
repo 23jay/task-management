@@ -1,0 +1,16 @@
+@import '../../../../assets/scss/variables';
+.dash-container{
+    height: 100vh;
+}
+.custom-drawer{
+    background: linear-gradient(198.55deg, #4BAADE 12.33%, #012A94 86.96%);
+}
+.custom-bg{
+    background-color: $light-background;
+    overflow: unset;
+}
+.container-height{
+    height: -webkit-fill-available;
+    width: 96%;
+    margin: 1em auto;
+}
