@@ -1,3 +1,37 @@
 .searchMenu {
   margin-right: 10px;
 }
+
+.text-center {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+.truncated-text {
+  max-width: 150px; /* Adjust width as necessary */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.truncated-text:hover {
+  position: relative;
+}
+
+.truncated-text:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  max-width: 300px;
+  z-index: 1000;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}

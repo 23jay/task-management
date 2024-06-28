@@ -7,9 +7,15 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ValidationMessageComponent } from './component/validation-message/validation-message.component';
+import { LoaderComponent } from './component/loader/loader.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SidebarComponent, ValidationMessageComponent],
+  declarations: [
+    HeaderComponent,
+    SidebarComponent,
+    ValidationMessageComponent,
+    LoaderComponent,
+  ],
   imports: [CommonModule, SharedRoutingModule, MatMenuModule, MatSidenavModule],
   exports: [
     HeaderComponent,
@@ -17,6 +23,7 @@ import { ValidationMessageComponent } from './component/validation-message/valid
     MatMenuModule,
     MatSidenavModule,
     ValidationMessageComponent,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

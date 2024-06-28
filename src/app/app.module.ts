@@ -8,6 +8,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment.development';
 import { AngularFireModule } from '@angular/fire/compat';
+import { SharedModule } from './modules/shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   providers: [
@@ -20,6 +22,9 @@ import { AngularFireModule } from '@angular/fire/compat';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    SharedModule,
+    ToastrModule.forRoot(), // ToastrModule added
+
   ],
   bootstrap: [AppComponent],
 })

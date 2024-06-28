@@ -11,11 +11,10 @@
         </select>
     </div>
     <div><input type="text" class="form-control" name="title" id="title" placeholder="Search By Task Name"
-        (input)="onSearch($event)"></div>
+            (input)="onSearch($event)"></div>
 </div>
 <div class="mt-3">
     <table class="table">
-        <caption>List of Tasks</caption>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -26,11 +25,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let task of filteredTasks; let index=index">
-                <th scope="row">{{index + 1}}</th>
-                <td>{{task.title}}</td>
-                <td>{{task.description}}</td>
-                <td>{{task.status}}</td>
+            <tr *ngFor="let task of paginatedTasks; let index=index">
+                <th scope="row">{{index + 1 + (currentPage - 1) * itemsPerPage}}</th>
+                <td class="truncated-text">{{task.title}}</td>
+                <td class="truncated-text">{{task.description}}</td>
+                <td>
+                    <select [(ngModel)]="task.status" class="form-control" (change)="updateTaskStatus(task)">
+                        <option value="To Do">To Do</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </td>
                 <td>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         style="margin-right: 10px;" (click)="updateTask(task)" class="bi bi-pencil-square"
@@ -50,6 +55,27 @@
                     </svg>
                 </td>
             </tr>
+            <tr *ngIf="filteredTasks.length === 0">
+                <td colspan="5" class="text-center">No tasks found</td>
+            </tr>
         </tbody>
     </table>
+    <nav class="d-flex justify-content-end" aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" aria-label="Previous" (click)="previousPage()">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                [class.active]="currentPage === i + 1">
+                <a class="page-link" (click)="setPage(i + 1)">{{ i + 1 }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" aria-label="Next" (click)="nextPage()">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>

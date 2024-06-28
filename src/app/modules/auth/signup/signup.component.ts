@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { UtilityService } from '../../shared/services/utility.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +22,9 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private utility: UtilityService,
+    private toastr: ToastrService
   ) {
     this.signupForm = this.fb.group({
       userName: ['', Validators.required],
@@ -33,17 +37,22 @@ export class SignupComponent {
     return this.signupForm.controls;
   }
 
+  //submit sign up
   onSubmit() {
+    this.utility.show();
     this.submitted = true;
     if (this.signupForm.valid) {
       const task = this.signupForm.value;
       this.authService.signup(task).subscribe({
         next: () => {
           this.signupForm.reset();
+          this.toastr.success('Sign up successfully.');
           this.router.navigateByUrl('/');
+          this.utility.hide();
         },
         error: (err: any) => {
-          console.log(err);
+          this.toastr.error(err.message);
+          this.utility.hide();
         },
       });
     }
