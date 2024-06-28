@@ -54,7 +54,14 @@ export class TaskListComponent {
       (response: any) => {
         if (response) {
           this.toastr.success('Task deleted successfully.');
-          this.getTaskList();
+          // Find the index of the task with the matching id in taskList
+          const index = this.paginatedTasks.findIndex(
+            (task: any) => task.id === data.id
+          );
+          // Remove the task from taskList if found
+          if (index !== -1) {
+            this.paginatedTasks.splice(index, 1);
+          }
         }
         this.utility.hide();
       },
@@ -102,9 +109,9 @@ export class TaskListComponent {
     this.applyFilter();
   }
 
-  updateTaskStatus(task: any) {
+  async updateTaskStatus(task: any) {
     this.utility.show();
-    this.taskService
+    await this.taskService
       .updateTask(task, task.id)
       .then(() => {
         this.toastr.success('Task status updated successfully.');

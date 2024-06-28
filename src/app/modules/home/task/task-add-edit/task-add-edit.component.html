@@ -37,7 +37,7 @@
             [disabled]="taskForm.invalid">Add
             Task</button>
           <button class="btn bsb-btn-2xl btn-primary" type="submit" type="submit" *ngIf="editId"
-            [disabled]="taskForm.invalid">Update
+            [disabled]="taskForm.invalid && submitted">Update
             Task</button>
         </div>
       </div>

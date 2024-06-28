@@ -55,26 +55,28 @@ export class TaskAddEditComponent {
   }
 
   // manage task add/edit based on the edit id
-  onSubmit() {
-    this.utility.show();
+  async onSubmit() {
     this.submitted = true;
+    this.utility.show();
     if (this.taskForm.valid) {
       const task: Task = this.taskForm.value;
       let url: any = this.editId
         ? this.taskService.updateTask(task, this.editId)
         : this.taskService.addTask(task);
-      url
+      await url
         .then(() => {
           this.toastr.success(
             this.editId
               ? 'Task updated successfully.'
               : 'Task added successfully.'
           );
+          this.submitted = false;
           this.router.navigateByUrl('/tasks/list');
           this.taskForm.reset({ status: 'To Do' });
           this.utility.hide();
         })
         .catch((error: any) => {
+          this.submitted = false;
           this.toastr.error(error.message);
           this.utility.hide();
         });
